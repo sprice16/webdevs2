@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title> Find CPS Schools</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #divMap {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 75%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      h1 {
+        border:solid;
+        background-color:white;
+        color:#000080;
+        border-radius:5px;
+        border-color:#000080;
+      }
+      p {
+        border-radius:10px;
+        background-color:white;
+        color:#000080;
+      }
+      body {
+        	background-color:white;
+      }
+      #content
+      {
+        
+      }
+      #enter
+      {
+        border:solid;
+        background-color:white;
+        color:#000080;
+        border-radius:1px;
+        border-color:#000080;
+      }
+      footer
+      {
+        color:#000080;
+      }
+    </style>
+  </head>
+  <body>
+    <h1> Find CPS Schools </h1>
+    <div id="form">
+      <label for="primary_category"> Type of School </label>
+        <select id="primary_category">
+          <option value="ES">Elementary School</option>
+          <option value="HS">High School</option>
+          </select>
+        <p id="enter">
+           Enter ZIP Code
+        </p>
+        <input id="zip" type="text" placeholder="Enter ZIP Code"></input>
+        <button type="button" id="btnSearch" >Search</button> 
+        <hr>
+    </div>
+    <div id="divMap"></div>
+    <hr>
+    <div id="results"></div>
+    <footer> <img src="http://cps.edu/branding/publishingimages/cpslogo_v1_4x4.jpg" style="width:50px;height:50px;"> Chicago Public Schools</footer>
+    <script>
+      var chicagoCoord, inspMap; 
+      
+      // create the map object
+      function initMap() {
+        chicagoCoord = {lat: 41.8781, lng: -87.6298};
+        inspMap = new google.maps.Map(document.getElementById('divMap'), 
+        {
+          zoom: 10,
+          center: chicagoCoord
+        });
+      }
+      
+      
+      
+      // add a marker;  the param should be an inspection record
+      function addMarker (obj) {
+          
+          //  the coordinates are received as text;  
+          //    we need to convert them to numbers
+          var inspLocation = {
+              lat: parseFloat(obj.location.coordinates[1]), 
+              lng: parseFloat(obj.location.coordinates[0])
+          };
+        
+        
+          // construct the html for the info window
+          var contentString = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">' + obj.long_name + '</h1>'+
+              '<div id="bodyContent">'+
+              "<br>" + obj.address + "<h2 id='color'>" + obj.grades_offered + "</h2>" + "<p id='paragraph'>" + obj.summary + "</p>" + "<br>" + "<a href='" + obj.website + "'> School Website </a>" + "</div>";
+              '</div>'+
+              '</div>';
+  
+          
+          // create the info window
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+          
+          // create the marker
+          var inspMarker = new google.maps.Marker({
+            position: inspLocation,
+            map: inspMap,
+            title: 'Chicago'
+          });
+          
+          // add the event listener
+          inspMarker.addListener('click', function() {
+            infowindow.open(inspMap, inspMarker);
+          });        
+        
+        
+      }
+      
+      
+      
+      </script>
+      
+
+    
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        // base URL to the food inspections data
+        var BaseURL = 'https://data.cityofchicago.org/resource/76dk-7ieb.json';
+        
+        // optional filters we're appending - date range and zip
+  
+        
+        // full URL
+        var Url = BaseURL;
+        
+        console.log (Url);
+      
+      
+      
+      $(function () {
+        
+        initMap();
+        $("#btnSearch").on("click", function() {
+                
+                
+                var zip = '?zip=' + $("#zip").val() + '&primary_category=' + $("#primary_category").val();
+           
+                var urlWithParams = Url + zip;
+                console.log(urlWithParams);
+                
+                $.getJSON(urlWithParams)       
+                    .done (function (data) {  
+                        
+                        console.log(data);
+                        
+                        var numRecords = data.length; 
+                        
+                        
+                        var message = 
+                            "<p>Records found: "
+                            + numRecords + "<hr>"
+                            + "</p>";
+                        
+                        $("#results").append(message);
+                        
+                        
+        
+        $.getJSON(urlWithParams)
+                .done (function (data) {
+                    
+                    
+                    console.log(data);
+                    
+                    $.each (data , 
+                        function (index, value) {
+                            
+                            
+                            addMarker(value);
+                            
+                        }
+                    );
+
+                });
+        
+      });
+        });
+      });
+      
+    </script>
+
+  </body>
+</html>
