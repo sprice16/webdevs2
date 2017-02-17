@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width">
         <title>repl.it</title>
         <style type="text/css">
-          .template {display:none; }
+          .template {display:none;}
           .towedVehicle {
             background-color: silver;
-            border: solid blue 5;
-            padding: 5;
+            border: solid blue 5px;
+            padding: 5px;
           }
         </style>
     </head>
@@ -47,7 +47,7 @@
             clone = $("#towedVehicle").clone();
             
             clone.removeClass("towedVehicle template");
-            console.log(clone);
+            
             clone.attr("id" ,v.plate);
             
             
