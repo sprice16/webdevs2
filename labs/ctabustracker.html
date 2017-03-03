@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.parseXML demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<h1>BUS TRACKER</h1>
+<div id="buttons">
+  <button type="button" id="addison" >Addison Times</button> 
+<br>
+<button type="button" id="western" >Western Times</button> </div>
+
+<div id=results> </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "format":"json"}
+            }).done (function (data) 
+            
+            {
+              console.log(data);
+              $("body").append("<h1>Bus Routes</h1>");
+             
+              $.each(data["bustime-response"]["routes"], function(i,v) {
+                  $("#results").append("Route #" + v.rt + ", " + v.rtnm + "<br>");
+                
+              })
+
+            });
+        });
+            
+  
+</script>
+ 
+</body>
+</html>
