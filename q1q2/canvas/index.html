@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="400" height="400" style="background-color:#ffffff">
+Your browswer does not support the canvas element    
+</canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+
+
+var endPathX;
+var endPathY;
+canvas.addEventListener("mousemove",
+function(e) {
+    console.log(e.layerX, e.layerY);
+    var circleSize= Math.floor((Math.random() * 20) + 20);
+    var circleColor='#'+Math.floor(Math.random()*16777215).toString(16);
+    var pathWidth= Math.floor((Math.random() * 20) + 20);
+    ctx.beginPath();
+ctx.moveTo(endPathX, endPathY);
+    ctx.strokeStyle=(circleColor);
+    ctx.lineWidth= pathWidth;
+ctx.lineTo(e. layerX,e. layerY);
+ctx.stroke();
+endPathX= e. layerX;
+endPathY= e. layerY;
+}
+);
+
+</script>
+
+</body>
+</html>
