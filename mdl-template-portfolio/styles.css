@@ -1,16 +1,19 @@
-
-
+.portfolio-header {
+  background-color:#21421e;
+}
 .portfolio-header .mdl-layout__header-row {
   padding: 0;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+          
 }
 
 .mdl-layout__title {
   font-size: 14px;
   text-align: center;
   font-weight: 300;
+  color:#21421e;
 }
 
 .is-compact .mdl-layout__title span {
@@ -40,7 +43,7 @@
 }
 
 .portfolio-navigation-row {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color:#FFDF00;
   text-transform: uppercase;
   height: 45px;
 }
@@ -59,7 +62,7 @@
 }
 
 .portfolio-header .mdl-layout__drawer-button {
-    background-color: rgba(197, 197, 197, 0.44);
+    background-color:#FFDF00;
 }
 
 .portfolio-navigation-row .is-active {
@@ -75,7 +78,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgb(255,64,129);
+  background-color:#21421e;
   left: 15%;
 }
 
@@ -91,7 +94,7 @@
 .portfolio-blog-card-bg > .mdl-card__actions {
   height: 52px;
   padding: 16px;
-  background:#21421e;
+  background:#FFDF00;
 }
 
 
@@ -146,5 +149,11 @@
   margin: auto;
 }
 
+.mdl-mini-footer {
+  background-color:#21421e; 
+}
+.mdl-logo {
+  color:#FFDF00;
+}
 
 
