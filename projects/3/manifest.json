@@ -3,12 +3,12 @@
   "name": "Relaxation App",
   "icons": [
     {
-      "src":"images/shermar.jpg",
+      "src":".images/shermar.jpg",
       "sizes": "500x605",
       "type": "image/jpg"
     }
   ],
-  "start_url": "/?utm_source=homescreen",
+  "start_url": "./index.html",
   "background_color": "#ff0000",
   "Theme_color": "#000000",
   "display": "standalone"
