@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="manifest" href="/manifest.json">
+    <meta charset=utf-8>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        canvas {
+    width: 400px;
+    height: 400px;
+    background-color:white;
+}
+
+        .screen {
+            display:none;
+        }
+        #nav {
+          background-color:#D60000;
+        }
+        #space {
+          background-color:#D60000;
+        }
+        h1 {
+          text-align: center;
+          vertical-align: middle;
+          line-height: 90px;  
+        }
+        .color {
+          background-color:#D60000;
+        }
+        .colortwo {
+          background-color:black;
+        }
+        #text {
+          color:black;
+        }
+        table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+    </style>
+  </head>
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="colortwo mdl-layout__header">
+        <div id="space" class="mdl-layout__header-row">
+          <!-- Title -->
+          <span id="text" class="mdl-layout-title"> Shermar Price</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class=" color mdl-layout-spacer"></div>
+          <!-- Navigation. We hide it in small screens. -->
+          <nav id="nav" class=" color mdl-navigation mdl-layout--large-screen-only">
+            <a id="link2screen1" class="mdl-navigation__link" href="#"> Screen 1</a>
+            <a id="link2screen2" class="mdl-navigation__link" href="#"> Screen 2</a>
+            <a id="link2screen3" class="mdl-navigation__link" href="#"> Screen 3</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title"> Relaxation App </span>
+        <nav class="mdl-navigation">
+          <a id="linkscreen1" class="mdl-navigation__link" href="#"> Screen 1</a>
+          <a id="linkscreen2" class="mdl-navigation__link" href="#"> Screen 2</a>
+          <a id="linkscreen3" class="mdl-navigation__link" href="#"> Screen 3</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div id="screen1" class="screen page-content">
+          <br>
+          <h1> Relaxation App</h1> 
+        <p> Mom, I know that you have a lot of stress. This app is designed to help relieve this stress. </p>
+        <br>
+        <p> Here are some photos of Imarni and I</p>
+        <img src="images/IMG_2264.JPG">
+        <br>
+        <img src="images/shermar.jpg">
+        <br>
+        <img src="images/imarni.jpg">
+        <br>
+        <img src="images/imarni2.jpg">
+                  </div>
+    
+        <div id="screen2" class=" screen page-content">
+          <br>
+        <h1> Relaxation App</h1>
+        <p> This is my daily schedule. Whenever you don't know where I'm at. You could use this schedule to get an indea of where I could be.</p>
+        <table>
+  <tr>
+    <th>Time</th>
+    <th>Location</th>
+  </tr>
+  <tr>
+    <td>7:30-7:15 AM</td>
+    <td>Western Bus</td>
+  </tr>
+  <tr>
+    <td>7:15-7:35 AM</td>
+    <td>Mc.Donalds on Addison and Rockwell</td>
+  </tr>
+  <tr>
+    <td>7:35-7:45 AM</td>
+    <td>Hallway in Lane Tech</td>
+  </tr>
+  <tr>
+    <td>7:45-8:50 AM</td>
+    <td>Room 123</td>
+  </tr>
+  <tr>
+    <td>8:50-8:55 AM</td>
+    <td>Passing Period</td>
+  </tr>
+  <tr>
+    <td>8:55-9:45 AM</td>
+    <td>Room 124</td>
+  </tr>
+  <tr>
+    <td>9:45-9:50 AM</td>
+    <td>Passing Period</td>
+  </tr>
+  <tr>
+    <td>9:50-10:40 AM</td>
+    <td>Room 207</td>
+  </tr>
+  <tr>
+    <td>10:40-10:45 AM</td>
+    <td>Passing Period</td>
+  </tr>
+  <tr>
+    <td>10:45-11:35 AM</td>
+    <td>Room 333</td>
+  </tr>
+  <tr>
+    <td>11:35-11:40 AM</td>
+    <td>Passing Period</td>
+  </tr>
+  <tr>
+  <td>11:40-12:30 PM</td>
+  <td>Room 303</td>
+  </tr>
+  <tr>
+    <td>12:30-12:35 PM</td>
+    <td>Locker</td>
+  </tr>
+  <tr>
+    <td>12:35-1:25 PM</td>
+    <td> Libary</td>
+  </tr>
+  <tr>
+    <td>1:25-1:30 PM</td>
+    <td>Boy's Locker Room</td>
+  </tr>
+  <tr>
+    <td>1:30-2:20 PM</td>
+    <td> Gym 2</td>
+  </tr>
+  <tr>
+    <td>2:20-2:25 PM</td>
+    <td> Boy's Locker Room/Passing Period</td>
+  </tr>
+  <tr>
+    <td>2:25-3:15 PM</td>
+    <td>Room 316</td>
+  </tr>
+  <tr>
+    <td>3:15-3:35 PM</td>
+    <td> Boy's Locker Room</td>
+  </tr>
+  <tr>
+    <td>3:35-4:45 PM</td>
+    <td> Lane Stadium or Third Floor</td>
+  </tr>
+  <tr>
+    <td>4:45-4:55 PM</td>
+    <td>Boy's Locker Room</td>
+  </tr>
+  <tr>
+    <td>4:55-5:45 PM</td>
+    <td> Kedzie/Californa Bus OR Western Bus</td>
+  </tr>
+  <tr>
+    <td>5:45-6:10 PM</td>
+    <td> Jackson Bus or Harrison Bus</td>
+  </tr>
+  <tr>
+    <td>6:10-6:15 PM</td>
+    <td> Walking Home</td>
+  </tr>
+  <tr>
+    <td>6:15-10:00 PM</td>
+    <td>Home</td>
+  </tr>
+</table>
+        </div>
+        <div id="screen3" class=" screen page-content"><br> <h1>Canvas</h1>
+        <canvas id="myCanvas">
+Your browswer does not support the canvas element    
+</canvas>
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.beginPath();
+
+
+var endPathX;
+var endPathY;
+canvas.addEventListener("mousemove",
+function(e) {
+    console.log(e.layerX, e.layerY);
+    var circleSize= Math.floor((Math.random() * 20) + 20);
+    var circleColor='#'+Math.floor(Math.random()*16777215).toString(16);
+    var pathWidth= Math.floor((Math.random() * 20) + 20);
+    ctx.beginPath();
+ctx.moveTo(endPathX, endPathY);
+    ctx.strokeStyle=(circleColor);
+    ctx.lineWidth= pathWidth;
+ctx.lineTo(e. layerX,e. layerY);
+ctx.stroke();
+endPathX= e. layerX;
+endPathY= e. layerY;
+}
+);
+
+</script>
+        </div>
+      </main>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+          $(function() {
+        
+              $("#linkscreen1").on("click", function() {
+                  $(".screen").hide();
+                  $("#screen1").show();
+              });
+              $("#link2screen1").on("click", function() {
+                  $(".screen").hide();
+                  $("#screen1").show();
+              });
+              $("#linkscreen2").on("click", function() {
+                  $(".screen").hide();
+                  $("#screen2").show();
+              });
+              $("#link2screen2").on("click", function() {
+                  $(".screen").hide();
+                  $("#screen2").show();
+              });
+              $("#linkscreen3").on("click", function() {
+                  $(".screen").hide();
+                  $("#screen3").show();
+              });
+              $("#link2screen3").on("click", function() {
+                  $(".screen").hide();
+                  $("#screen3").show();
+              });
+          });
+      </script>
+    </div>
+  </body>
+  <script>
+  if ('serviceWorker' in navigator) {
+    console.log("Will the service worker register?");
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(reg){
+        console.log("Yes, it did.");
+      }).catch(function(err) {
+        console.log("No it didn't. This happened: ", err)
+      });
+  }
+</script>
+</html>

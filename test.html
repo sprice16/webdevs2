@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<style>
+  body {
+    background-color:#21421e;
+  }
+  #btnwestern {
+    background-color:#21421e;
+    border-color:#FFDF00;
+  }
+  #btnaddison {
+    background-color:#21421e;
+    border-color:#FFDF00;
+  }
+  #btnkedziecali {
+    background-color:#21421e;
+    border-color:#FFDF00;
+  }
+  p {
+    color:#21421e;
+  }
+ 
+  #title {
+    background-color:#FFDF00;
+    color:#21421e;
+    text-align: center;
+  }
+  #westernprediction {
+    color:#FFDF00;
+    background-color: #21421e;
+    border-style: solid;
+    font-size: 30px
+  }
+  #addisonprediction {
+    color:#FFDF00;
+    background-color: #21421e;
+    border-style: solid;
+    font-size: 30px
+  }
+</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="./manifest.json">
+  <title> Lane Tech CTA Bus Tracker</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1 id="title"> Lane Tech CTA Bus Tracker App</h1>
+<hr>
+<div class="container">
+  <h2>Addison and Western Bus Stops</h2>
+  <p>Use the Lane Tech CTA Bus Tracker App to get home easier and faster. This app finds the times for the bus stops near Lane Tech (Addison and Western bus stops). Click the Western button for Northbound and Southbound buses. Click the Addison button for Eastbound and Westbound buses</p>
+  <div class="btn-group btn-group-justified">
+    <a href="#" class="btn btn-primary" id="btnwestern">Western</a>
+    <a href="#" class="btn btn-primary" id="btnaddison">Addison</a>
+    <a href="#" class="btn btn-primary" id="btnkedziecali"> Kedzie/Californa</a>
+  </div>
+</div>
+ <div class="results" id="westernnorthbound"></div>
+ <br>
+ <div class="results" id="westernsouthbound"></div>
+ <div class="results" id="addisonwestbound"></div>
+ <br>
+ <div class="results" id="addisoneastbound"></div>
+ 
+ <hr>
+ <footer>
+  Shermar Price
+ </footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions";
+          
+          $("#btnwestern").on("click", function() {
+          
+          $(".results").html("");
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "49,X49" ,
+                      "stpid" : "8417" ,
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              
+              $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                          var westerntimes= "<div id=westernprediction>"+ "Route:" + value.rt + " Western" + "<br>" + "To " + value.des + "<br>" + value.prdctdn +" Minutes" + "<br>" + value.rtdir + "</div>"  ; 
+                             $("#westernnorthbound").append(westerntimes);
+                             
+                        }
+                    );
+                   
+                    
+              
+            });
+            $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "49,X49" ,
+                      "stpid" : "8195" ,
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              
+              $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                          var westerntimes= "<div id=westernprediction>"+ "Route:" + value.rt + " Western" + "<br>" + "To " + value.des + "<br>" + value.prdctdn +" Minutes" + "<br>" + value.rtdir + "</div>"  ; 
+                             $("#westernsouthbound").append(westerntimes);
+                             
+                        }
+                    );
+                   
+                    
+              
+            });
+
+            });
+          
+          $("#btnaddison").on("click", function() {
+          $(".results").html("")
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "152",
+                      "stpid" : "12527" ,
+                      "format":"json" }
+            }).done (function (data) {
+              console.log(data);
+                
+                $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                            
+                           var addisontimes= "<div id=addisonprediction>"+ "Route:" + value.rt + " Addison" + "<br>" + "To " + value.des + "<br>" + value.prdctdn +" Minutes" + "<br>" + value.rtdir + "</div>"  ; 
+                            
+                            $("#addisoneastbound").append(addisontimes);
+                        }
+                    );
+            });
+            $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "152",
+                      "stpid" : "12569" ,
+                      "format":"json" }
+            }).done (function (data) {
+              console.log(data);
+                
+                $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                            
+                           var addisontimes= "<div id=addisonprediction>"+ "Route:" + value.rt + " Addison" + "<br>" + "To " + value.des + "<br>" + value.prdctdn +" Minutes" + "<br>" + value.rtdir + "</div>"  ; 
+                            
+                            $("#addisonwestbound").append(addisontimes);
+                        }
+                    );
+            });
+              
+              
+            });
+            
+        });
+      
+        
+</script>
+ 
+</body>
+</html>

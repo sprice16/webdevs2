@@ -1,0 +1,15 @@
+{
+  "short_name": "Relaxation App",
+  "name": "Relaxation App",
+  "icons": [
+    {
+      "src":"images/shermar.jpg",
+      "sizes": "500x605",
+      "type": "image/jpg"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "white",
+  "Theme_color": "#ff0000 ",
+  "display": "standalone"
+}
