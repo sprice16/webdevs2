@@ -1,0 +1,458 @@
+<html>
+  <head>
+    <style>
+      .color {
+          background-color:#ffd700;
+        }
+        .colortwo {
+          background-color:#21421e;
+        }
+        #colorthree {
+           background-color:#21421e;
+        }
+        #colorfour {
+          background-color:#21421e;
+        }
+      
+      h1 {
+          text-align: center;
+          vertical-align: middle;
+          line-height: 90px;  
+          
+        }
+        #title {
+    background-color:#FFDF00;
+    color:#21421e;
+    text-align: center;
+  }
+        #text {
+          color:#21421e;
+        }
+      
+    body {
+      background-color:#ffffff ; 
+    }
+    #westernprediction {
+    color:#FFDF00;
+    background-color: #21421e;
+    border-style: solid;
+    font-size: 30px;
+    height: 25%;
+  }
+  #kedzieprediction {
+    color:#FFDF00;
+    background-color: #21421e;
+    border-style: solid;
+    font-size: 30px;
+    height: 25%;
+  }
+  #addisonprediction {
+    color:#FFDF00;
+    background-color: #21421e;
+    border-style: solid;
+    font-size: 30px;
+    height: 25%;
+  }
+  #btnwestern {
+    background-color:#21421e;
+    border-color:#FFDF00;
+  }
+  #btnaddison {
+    background-color:#21421e;
+    border-color:#FFDF00;
+  }
+  #btnkedziecali {
+    background-color:#21421e;
+    border-color:#FFDF00;
+  }
+  #btnenter {
+     background-color:#21421e;
+    border-color:#FFDF00;
+    color:#FFDF00;
+  }
+  #backgroundenterpage {
+    background-color:#FFDF00;
+  }
+  #direction {
+    background-color:#21421e;
+    color:#FFDF00;
+  }
+  #stop {
+    background-color:#21421e;
+    color:#FFDF00;
+  }
+  #route {
+    background-color:#21421e;
+    color:#FFDF00;
+  }
+  #deletebutton {
+    background-color:#21421e;
+    color:#FFDF00;
+  }
+  #btndisplay {
+    background-color:#21421e;
+    color:#FFDF00;
+  }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                mdl-layout--fixed-tabs">
+        <header id="colorthree" class="colorthree mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class= "mdl-layout-title"> Shermar Price</span>
+        </div>
+        <!-- Tabs -->
+        <div class="colortwo mdl-layout__tab-bar mdl-js-ripple-effect">
+          <a href="#fixed-tab-1" class="colortwo mdl-layout__tab is-active"> LT CTA Bus Tracker</a>
+          <a href="#fixed-tab-2" class="colortwo mdl-layout__tab"> View Stops</a>
+          <a href="#fixed-tab-3" class="colortwo mdl-layout__tab"> Add Bus Stops</a>
+        </div>
+      </header>
+      <div class="colortwo mdl-layout__drawer">
+        <span class="color mdl-layout-title"> Lane Tech CTA Bus Tracker</span>
+      </div>
+      <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+          <div class="page-content"> 
+                   <h1 id="title"> Lane Tech CTA Bus Tracker App</h1>
+<hr>
+<div class="container">
+  <h2>Addison and Western Bus Stops</h2>
+  <p>Use the Lane Tech CTA Bus Tracker App to get home easier and faster. This app finds the times for the bus stops near Lane Tech (Addison and Western bus stops). Click the Western button for Northbound and Southbound buses. Click the Addison button for Eastbound and Westbound buses</p>
+  <div class="btn-group btn-group-justified">
+    <a href="#" class="btn btn-primary" id="btnwestern">Western</a>
+    <a href="#" class="btn btn-primary" id="btnaddison">Addison</a>
+    <a href="#" class="btn btn-primary" id="btnkedziecali"> Kedzie/Californa</a>
+  </div>
+</div>
+ <div class="results" id="westernnorthbound"></div>
+ <br>
+ <div class="results" id="westernsouthbound"></div>
+ <div class="results" id="addisonwestbound"></div>
+ <br>
+ <div class="results" id="addisoneastbound"></div>
+ <div class="results" id="kedziesouthbound"></div>
+ <hr>
+ <footer>
+  Shermar Price
+ </footer>
+          </div>
+          
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+          <div class="page-content">
+            
+            <div class="color" id="display2">
+              <a href="#" class="btn btn-primary" id="btndisplay">Display Data</a>
+              <div id="routesdisplay">
+                
+              </div>
+              <a href="#" class="btn btn-primary" id="deletebutton"> Delete All </a>
+            </div>
+          </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+          <div class="page-content" id="backgroundenterpage">
+            <select id="route">
+              
+            </select>
+            <br>
+            <select id="direction">
+              
+            </select>
+            <br>
+            <select id="stop">
+              
+            </select>
+            <br>
+            <a href="#" class="btn btn-primary" id="btnenter">Submit</a>
+             
+              </div>
+        </section>
+      </main>
+    </div>
+     <script>
+      $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions";
+          var routesdata="http://www.ctabustracker.com/bustime/api/v2/getroutes";
+          
+          
+          $("#btnwestern").on("click", function() {
+          
+          $(".results").html("");
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "49,X49" ,
+                      "stpid" : "8417" ,
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              
+              $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                          var westerntimes= "<div id=westernprediction>"+ "Route:" + value.rt + " Western" + "<br>" + "<br>"+ "To " + value.des + "<br>" +"<br>" + value.prdctdn +" Minutes" + "<br>" +"<br>" +value.rtdir + "</div>"  ; 
+                             $("#westernnorthbound").append(westerntimes);
+                             
+                        }
+                    );
+                   
+                    
+              
+            });
+            $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "49,X49" ,
+                      "stpid" : "8195" ,
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              
+              $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                          var westerntimes= "<div id=westernprediction>"+ "Route:" + value.rt + " Western" + "<br>" +"<br>" + "To " + value.des + "<br>" +"<br>" + value.prdctdn +" Minutes" + "<br>" +"<br>" + value.rtdir + "</div>"  ; 
+                             $("#westernsouthbound").append(westerntimes);
+                             
+                        }
+                    );
+                   
+                    
+              
+            });
+
+            });
+          
+          $("#btnaddison").on("click", function() {
+          $(".results").html("")
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "152",
+                      "stpid" : "12527" ,
+                      "format":"json" }
+            }).done (function (data) {
+              console.log(data);
+                
+                $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                            
+                           var addisontimes= "<div id=addisonprediction>"+ "Route:" + value.rt + " Addison" + "<br>" +"<br>" + "To " + value.des + "<br>" +"<br>" + value.prdctdn +" Minutes" + "<br>" +"<br>" + value.rtdir + "</div>"  ; 
+                            
+                            $("#addisoneastbound").append(addisontimes);
+                        }
+                    );
+            });
+            $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "152",
+                      "stpid" : "12569" ,
+                      "format":"json" }
+            }).done (function (data) {
+              console.log(data);
+                
+                $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                            
+                           var addisontimes= "<div id=addisonprediction>"+ "Route:" + value.rt + " Addison" + "<br>" + "<br>" +"To " + value.des + "<br>" +"<br>" + value.prdctdn +" Minutes" + "<br>" +"<br>" + value.rtdir + "</div>"  ; 
+                            
+                            $("#addisonwestbound").append(addisontimes);
+                        }
+                    );
+            });
+            $("#btnkedziecali").on("click", function() {
+          $(".results").html("")
+            $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "52",
+                      "stpid" : "17786" ,
+                      "format":"json" }
+            }).done (function (data) {
+              console.log(data);
+                
+                $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                            
+                           var kedzietimes= "<div id=kedzieprediction>"+ "Route:" + value.rt + "Kedzie/Californa" + "<br>" + "<br>" +"To " + value.des + "<br>" +"<br>" + value.prdctdn +" Minutes" + "<br>" +"<br>" + value.rtdir + "</div>"  ; 
+                            
+                            $("#kedziesouthbound").append(kedzietimes);
+                        }
+                    );
+            });
+              
+            });
+            });
+      });
+            
+            </script>
+            <script>
+            $(function() {
+          var db = new Dexie("busstoreDB");
+         db.version(1).stores({
+           busstore: '++id,route,direction,stop'
+         });
+         
+               
+     $("#btnenter").on("click", function() {
+       $("#btndisplay").remove();
+      $("#routesdisplay").html("");
+        var enterroute= $("#route").val();
+        console.log(enterroute);
+        var enterdirection= $("#direction").val();
+        var enterstop= $("#stop").val();
+        db.busstore.add({
+                     route: enterroute,
+                     direction: enterdirection,
+                     stop: enterstop,
+                    
+                   });
+          alert("Stop Saved");
+          db.busstore.each(function(busstore) {
+             var routesdisplay = "<strong>" + busstore.route + "</strong>";
+             routesdisplay += "<br>" + busstore.direction + "<br><br>" +busstore.stop +"<br><br>" + "<button id='' class='Btndel'> Delete </button>" + "<br><br>";
+             $("#routesdisplay").append(routesdisplay);
+           });
+         });
+        
+     $("#btndisplay").on("click", function() {
+     $("#btndisplay").remove();
+      db.busstore.each(function(busstore) {
+             var routesdisplay = "<strong>" + busstore.route + "</strong>";
+             routesdisplay += "<br>" + busstore.direction + "<br><br>" +busstore.stop +"<br><br>"+ "<button id='' class='Btndel'> Delete </button>" + "<br><br>";
+             $("#routesdisplay").append(routesdisplay);
+           });
+     });
+           $("#deletebutton").on("click" ,function() {
+            alert("Button clicked");
+            db.busstore.clear();
+            $(".remove").remove();
+                    $(".remove2").remove();
+                    $(".clear").remove();
+          
+           });
+           $("body").on("click",".Btndel" ,function() {
+            alert("Button clicked");
+            db.busstore.delete(this.id);
+           });
+     
+     
+     
+         
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          var routesdata="http://www.ctabustracker.com/bustime/api/v2/getroutes";
+          var stopdirection="http://www.ctabustracker.com/bustime/api/v2/getdirections";
+          var busstops= "http://www.ctabustracker.com/bustime/api/v2/getstops";
+            $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": routesdata,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $.each(data["bustime-response"]["routes"], 
+                        function (index, value) {
+                          $("#route").append("<option value='"
+                      + value.rt
+                      + "'>"
+                      + value.rt
+                      + " - "
+                      + value.rtnm
+                      + "</option>");
+
+                          
+                        });
+              
+        });
+        
+        $("#route").on("change",function(){
+          var addval= $("#route").val();
+        $("option").remove("#remove");
+        $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": stopdirection,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" :addval,
+                      "format":"json"}
+        }).done (function (data) {
+              console.log(data);
+              $.each(data["bustime-response"]["directions"], 
+                        function (index, value) {
+                       $("#direction").append("<option class='remove' value='"
+                        + value.dir
+                        + "'>"
+                        + value.dir
+                        + "</option>");
+                          
+                        });
+        });
+        });
+        $("#direction").on("change",function(){
+           var addval= $("#route").val();
+          var direction2= $("#direction").val();
+          $("option").remove("#removestop");
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": busstops,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" :addval,
+                      "dir" :direction2 ,
+                      "format":"json"}
+        }).done(function (data) {
+              console.log(data);
+              $.each(data["bustime-response"]["stops"], 
+                        function (index, value) {
+                        $("#stop").append("<option class='remove2' value='"
+                        + value.stpid
+                        + "'>"
+                        + value.stpnm
+                        + "</option>");
+                          
+                        });
+        });
+        
+});});
+        
+     </script>
+  </body>
+</html>
+

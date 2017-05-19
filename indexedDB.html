@@ -1,0 +1,163 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                mdl-layout--fixed-tabs">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title"> Shermar Price</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+          <a href="#fixed-tab-1" class="mdl-layout__tab is-active"> Display Data</a>
+          <a href="#fixed-tab-2" class="mdl-layout__tab">Seach Members</a>
+          <a href="#fixed-tab-3" class="mdl-layout__tab"> Add Members</a>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">DB Lab</span>
+      </div>
+      <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+          <div class="page-content"> 
+          <div id="button1">
+          <button type="button" id="databutton1"> Display Data </button> 
+          </div>
+          <div id="display">
+              
+          </div>
+          </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+          <div class="page-content">
+            <form action="#">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="searchbar">
+                <label class="mdl-textfield__label" for="sample1"> Search Members</label>
+                <button type="button" id="search"> Search</button> 
+              </div>
+            </form>
+            <div id="display2">
+              
+            </div>
+          </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+          <div class="page-content">
+              <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="name">
+        <label class="mdl-textfield__label" for="sample1"> Name</label>
+      </div>
+    </form>
+      <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="department">
+        <label class="mdl-textfield__label" for="sample1"> Department</label>
+      </div>
+    </form>
+      <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="title">
+        <label class="mdl-textfield__label" for="sample1">Title</label>
+      </div>
+    </form>
+      <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="salary">
+        <label class="mdl-textfield__label" for="sample1">Salary</label>
+      </div>
+      <br>
+      <button type="button" id="add"> Add Employee </button>
+    </form>
+          </div>
+        </section>
+      </main>
+    </div>
+     <script>
+      
+       $(function() {
+         var endpoint = 'https://data.cityofchicago.org/resource/tt4n-kn4t.json?department=CITY%20COUNCIL';
+         var db = new Dexie("employeeDB");
+         db.version(1).stores({
+           employees: '++id,name,department,title,salary'
+         });
+     
+     
+     
+     
+         db.employees.count().then(function(count) {
+           console.log(count);
+           if (count == 0) {
+             $.getJSON(endpoint)
+               .done(function(data) {
+                 console.log(data);
+     
+     
+                 $.each(data, function(i, v) {
+                   db.employees.add({
+                     name: v.name,
+                     title: v.job_titles,
+                     salary: v.employee_annual_salary,
+                     department: v.department
+                   });
+                 });
+               });
+     
+     
+     
+     
+     
+           }
+         });
+         $("#add").on("click", function() {
+          var name= $("#name").val();
+          var department= $("#department").val();
+          var title= $("#title").val();
+          var salary= $("#salary").val();
+           db.employees.add({
+                     name: name,
+                     title: title,
+                     salary: salary,
+                     department: department
+                   });
+          
+         });
+         $("#search").on("click", function() {
+           $("#display2").html("");
+           console.log("This has been clicked");
+           var searchTerm = $("#searchbar").val();
+           db.employees.where("name").startsWith(searchTerm).each(function(employee) {
+            console.log(employee.name);
+            var html2 = "<strong>" + employee.name + "</strong>" + "<br>";
+            $("#display2").append(html2);
+           });
+     
+         });
+     
+         $("#databutton1").on("click", function() {
+     
+     
+           db.employees.each(function(employee) {
+             var html = "<strong>" + employee.name + "</strong>";
+             html += "<br>" + employee.department + "<br><br>";
+             $("#display").append(html);
+           });
+         });
+           
+         
+       });
+       
+     </script>
+  </body>
+</html>
