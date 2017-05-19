@@ -402,7 +402,8 @@
         
         $("#route").on("change",function(){
           var addval= $("#route").val();
-        $("option").remove("#remove");
+        $("option").remove(".remove");
+        $("option").remove(".remove2");
         $.ajax({
               url: apiPassThruUrl,
               dataType: "json",
@@ -427,7 +428,7 @@
         $("#direction").on("change",function(){
            var addval= $("#route").val();
           var direction2= $("#direction").val();
-          $("option").remove("#removestop");
+          $("option").remove(".remove2");
           $.ajax({
               url: apiPassThruUrl,
               dataType: "json",
