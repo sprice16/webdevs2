@@ -38,6 +38,12 @@
     border-style: solid;
     font-size: 30px
   }
+  #kedzieprediction {
+    color:#FFDF00;
+    background-color: #21421e;
+    border-style: solid;
+    font-size: 30px
+  }
 </style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,6 +77,7 @@
  <div class="results" id="addisonwestbound"></div>
  <br>
  <div class="results" id="addisoneastbound"></div>
+ <div class="results" id="kedziesouthbound"></div>
  
  <hr>
  <footer>
@@ -183,6 +190,31 @@
                     );
             });
               
+              
+            });
+             $("#btnkedziecali").on("click", function() {
+          $(".results").html("")
+            $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "7nkaa8LTAZQr39SyzNvScQtzS",
+                      "rt" : "52",
+                      "stpid" : "17786" ,
+                      "format":"json" }
+            }).done (function (data) {
+              console.log(data);
+                
+                $.each(data["bustime-response"]["prd"], 
+                        function (index, value) {
+                            
+                           var kedzietimes= "<div id=kedzieprediction>"+ "Route:" + value.rt + "Kedzie/Californa" + "<br>" + "<br>" +"To " + value.des + "<br>" +"<br>" + value.prdctdn +" Minutes" + "<br>" +"<br>" + value.rtdir + "</div>"  ; 
+                            
+                            $("#kedziesouthbound").append(kedzietimes);
+                        }
+                    );
+            });
               
             });
             
