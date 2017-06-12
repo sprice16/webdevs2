@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> Game </title>
+    <style>
+    canvas {
+      border: #333 10px solid;
+    }
+  </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="550px" height="350px"></canvas>
+    <script>
+    var canvas = document.querySelector("#myCanvas");
+    var context = canvas.getContext("2d");
+      var livesRemaining = 3;
+      var score = 0;
+      var level = 1;
+      var paused = false;
+      var player = new Image();
+      player.src = "http://nebula.wsimg.com/fbd10030ce5e4282361058d517f003a8?AccessKeyId=8FB89D21E80FB114A01F&disposition=0&alloworigin=1";
+     
+      var playerX=0;
+      var playerY=0;
+      var harm = new Image();
+      harm.src = "http://vignette1.wikia.nocookie.net/scribblenauts/images/7/79/Prop_Plane_SU.png/revision/latest?cb=20130217153247";
+      
+      var harmX= 100;
+      var harmY= 500;
+      var benX=300;
+      var benY=500;
+      var benefit = new Image();
+      benefit.src = "https://t1.rbxcdn.com/c07a735745612c92d716011c3913a05b";
+      var background= new Image();
+      background.src= "http://neuro-technics.com/wp-content/uploads/2013/08/blue-sky-dsc03155-wp-1024x768.jpg";
+      backgroundX=0;
+      backgroundY=0;
+      /*
+      
+        main animation loop
+      
+      */
+      function animate() {
+        // clear canvas
+        context.clearRect(0,0,canvas.width,canvas.height);
+        // update harm and benefit x coordinates
+        
+        // draw background
+        context.drawImage(background,backgroundX,backgroundY,550,550);
+        // draw player
+        context.drawImage(player,playerX,playerY,145,60);
+        // draw harm 
+        context.drawImage(harm,harmY, harmX, 100, 50);
+      harmY += -5;
+      
+        // check for and handle edge condition
+        if (harmY <= -100) {
+        harmY = 600
+      }
+        // check for and handle harm collision
+     if (playerX < harmX + 80 &&
+   playerX + 100 > harmX &&
+   playerY < harmY + 10 &&
+   10+ playerY > harmY) {
+     playerY = 0;
+     harmY=600
+     livesRemaining += -1;
+}
+        // draw benefit
+        context.drawImage(benefit,benY, benX, 50, 50);
+      benY += -.7;
+        // check for and handle edge condition
+        if (benY <= -100) {
+        benY = 550
+      }
+        // check for benefit collision
+        
+        // draw text (lives and score)
+        context.font = "20px Arial";
+        context.fillStyle="#000000";
+context.fillText("Level:" + level,350,20);
+        context.font = "20px Arial";
+context.fillText("Lives Remaining:" + livesRemaining,350,50);
+        
+        //  if the game has not been paused, 
+        if (!paused) {
+          requestAnimationFrame(animate);
+        }
+        
+      }
+      
+      animate();
+      
+      //  event handler for moving player
+      //    use onKeyPress event, and change the player.y value based on the up/down keys
+      document.addEventListener("keydown", movePlayer);
+function movePlayer (e) {
+                //console.log(e);
+                context.clearRect(0,0,canvas.width,canvas.height);
+                
+                if (e.keyCode == 38) {
+                  if (playerY > 2) {
+                    playerY = playerY - 12;
+                  }
+                    
+                }
+                
+                if (e.keyCode == 40) {
+                  if (playerY < 300) {
+                   playerY = playerY + 12;
+                }
+                }
+context.drawImage(player, playerX, playerY,125,60);
+  
+}
+      
+      
+      
+      
+    </script>
+    
+    
+  </body>
+</html>
